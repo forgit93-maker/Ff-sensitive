@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>FF Sensitivity Ultra Pro</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+              neon: {
+                pink: '#ff007f',
+                dark: '#000000',
+                surface: '#0a0a0a',
+                border: '#333333'
+              }
+            },
+            animation: {
+              'lightning': 'lightning 2s infinite',
+              'fade-out': 'fadeOut 0.5s ease-out forwards',
+              'slide-up': 'slideUp 0.5s ease-out forwards',
+            },
+            keyframes: {
+              lightning: {
+                '0%, 100%': { opacity: '1', filter: 'drop-shadow(0 0 10px #ff007f)' },
+                '50%': { opacity: '0.6', filter: 'drop-shadow(0 0 20px #ff007f)' },
+              },
+              fadeOut: {
+                '0%': { opacity: '1', visibility: 'visible' },
+                '100%': { opacity: '0', visibility: 'hidden' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #000000;
+        color: white;
+        overflow-x: hidden;
+      }
+      /* Loading Screen Styles */
+      #global-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+      }
+      .loader-icon {
+        font-size: 80px;
+        color: #ff007f;
+        animation: lightning 1.5s infinite alternate;
+        margin-bottom: 20px;
+      }
+      .loader-text {
+        font-family: 'Poppins', sans-serif;
+        color: #ff007f;
+        font-size: 14px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-weight: 700;
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #0a0a0a; }
+      ::-webkit-scrollbar-thumb { background: #ff007f; border-radius: 10px; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <!-- 1. Critical Loading Fix: Hardcoded HTML Loader -->
+    <div id="global-loader">
+      <i class="fa-solid fa-bolt loader-icon"></i>
+      <div class="loader-text">Loading Ultimate Sensitivity...</div>
+    </div>
+
+    <!-- React Root -->
+    <div id="root" style="position: relative; z-index: 1;"></div>
+
+    <!-- Foolproof Loader Removal Script -->
+    <script>
+      function removeLoader() {
+        const loader = document.getElementById('global-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          loader.style.pointerEvents = 'none';
+          // Completely hide after transition to prevent clicks
+          setTimeout(() => {
+            loader.style.visibility = 'hidden';
+          }, 800);
+        }
+      }
+
+      // Guarantee removal after 3 seconds regardless of load state
+      setTimeout(removeLoader, 3000);
+
+      // Also try on window load for faster connection
+      window.addEventListener('load', () => {
+        // Ensure minimum 1.5s display for branding
+        setTimeout(removeLoader, 1500); 
+      });
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
